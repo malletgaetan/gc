@@ -39,7 +39,7 @@ int	test_total_wipe(void)
 	return (0);
 }
 
-int	test_total_wipe_feed(void)
+int	test_total_wipe_refeed(void)
 {
 	t_gcan	gc;
 	t_rand	*ptr1;
@@ -65,10 +65,28 @@ int	test_total_wipe_feed(void)
 	return (0);
 }
 
+int	test_access(void)
+{
+	t_gcan	gc;
+	t_rand	*ptr1;
+	
+	gc_init(&gc);
+	ptr1 = gc_malloc(&gc, sizeof(t_rand));
+	if (ptr1 == NULL)
+		return (1);
+	ptr1->g = 1;
+	ptr1->c = 1;
+	gc_free(&gc, (void **)&ptr1);
+	gc_clean(&gc);
+	return (0);
+}
+
 int	main(void)
 {
 	if (test_total_wipe())
 		return (1);
-	if (test_total_wipe_feed())
+	if (test_total_wipe_refeed())
+		return (1);
+	if (test_access())
 		return (1);
 }
