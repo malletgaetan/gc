@@ -69,7 +69,7 @@ int	test_access(void)
 {
 	t_gcan	gc;
 	t_rand	*ptr1;
-	
+
 	gc_init(&gc);
 	ptr1 = gc_malloc(&gc, sizeof(t_rand));
 	if (ptr1 == NULL)
